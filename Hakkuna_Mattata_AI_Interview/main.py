@@ -89,7 +89,7 @@ app.add_middleware(
 
 # ─── Health Check ────────────────────────────────────────────────────────────────
 
-@app.get("/api/health", summary="Health check")
+@app.api_route("/api/health", methods=["GET", "HEAD"], summary="Health check")
 async def health_check():
     return {"status": "ok", "message": "Hakkuna Mattata AI Interview API is running"}
 
