@@ -58,7 +58,11 @@ function AppContent() {
   const [confidenceScores, setConfidenceScores] = useState(null);
   const [interviewId, setInterviewId] = useState(null);
 
-  const nav = (path) => navigate(`/${path.toLowerCase().replace(/\s+/g, "-")}`);
+  const nav = (path) => {
+    const [page, query] = path.split("?");
+    const slug = page.toLowerCase().replace(/\s+/g, "-");
+    navigate(query ? `/${slug}?${query}` : `/${slug}`);
+  };
 
   return (
     <UploadContext.Provider value={{

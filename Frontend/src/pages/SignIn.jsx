@@ -1,17 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 export default function SignIn({ onNavigate }) {
     const { login } = useAuth();
+    const [searchParams] = useSearchParams();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const fillDemo = () => {
         setEmail("S@gmail.com");
         setPassword("123456");
     };
-    const [error, setError] = useState("");
-    const [loading, setLoading] = useState(false);
+
+    // Auto-fill and auto-login when ?demo=true
+    useEffect(() => {
+        if (searchParams.get("demo") === "true") {
+            setEmail("S@gmail.com");
+            setPassword("123456");
+            setLoading(true);
+            login("S@gmail.com", "123456")
+                .then(() => onNavigate("Upload"))
+                .catch(err => {
+                    setError(err.message || "Demo login failed");
+                    setLoading(false);
+                });
+        }
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();

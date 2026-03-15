@@ -50,6 +50,21 @@ export default function LandingPage({ onNavigate }) {
               <button className="btn btn-primary btn-lg" onClick={() => onNavigate("Sign Up")}>
                 <span>🚀</span> Get Started
               </button>
+              <button
+                className="btn btn-lg"
+                onClick={() => onNavigate("Sign In?demo=true")}
+                style={{
+                  background: "linear-gradient(135deg, rgba(0,229,255,0.08), rgba(123,97,255,0.08))",
+                  border: "1.5px solid var(--cyan)",
+                  color: "var(--cyan)", fontWeight: 600,
+                  boxShadow: "0 0 18px rgba(0,229,255,0.2)",
+                  transition: "box-shadow 0.2s ease",
+                }}
+                onMouseEnter={e => e.currentTarget.style.boxShadow = "0 0 32px rgba(0,229,255,0.4)"}
+                onMouseLeave={e => e.currentTarget.style.boxShadow = "0 0 18px rgba(0,229,255,0.2)"}
+              >
+                🔑 Try Demo
+              </button>
               <button className="btn btn-ghost btn-lg" onClick={() => onNavigate("Sign In")}>
                 Sign In
               </button>
