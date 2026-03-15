@@ -1,11 +1,41 @@
 # 🤖 Hakkuna Mattata AI Interview
 
+![Project Banner](https://via.placeholder.com/1200x400?text=Hakkuna+Mattata+AI+Interview+Banner)
+
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com/)
 [![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 [![Groq](https://img.shields.io/badge/Groq-f3f3f3?style=for-the-badge&logo=groq&logoColor=black)](https://groq.com/)
 
 Hakkuna Mattata is a next-generation AI hiring platform that leverages Large Language Models and Voice AI to conduct adaptive technical interviews. It goes beyond static resumes by probing for depth, catching contradictions, and delivering evidence-based hiring signals in minutes.
+
+### 🔗 [Live Demo - Try it Here!](https://hakunaai.netlify.app/)
+
+
+---
+
+## 📊 System Flowchart
+
+```mermaid
+graph TD
+    A[📄 Resume Upload] --> B{🧠 Groq LLM Parsing}
+    B --> C[📊 Skill Graph Created]
+    C --> D[🎯 Adaptive Interview Plan]
+    D --> E[🎙 ElevenLabs Voice Call]
+    E --> F{🔍 Whisper Transcription}
+    F --> G[🧠 Real-time Evaluation]
+    G --> H[📈 Final Hiring Report]
+    
+    subgraph AI Engine
+    B
+    G
+    end
+    
+    subgraph Communication
+    E
+    F
+    end
+```
 
 ---
 
