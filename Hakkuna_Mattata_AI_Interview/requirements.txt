@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+motor
+pymongo
+pydantic[email]
+python-dotenv
+python-multipart
+bcrypt
+PyJWT
+requests
+PyMuPDF
+SpeechRecognition
+elevenlabs
+groq
