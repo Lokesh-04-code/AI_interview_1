@@ -116,6 +116,25 @@ export default function SignUp({ onNavigate }) {
                     </button>
                 </form>
 
+                <button
+                    type="button"
+                    onClick={() => onNavigate("Sign In")}
+                    style={{
+                        width: "100%", marginTop: 16, padding: "13px 16px",
+                        background: "linear-gradient(135deg, rgba(0,229,255,0.08), rgba(123,97,255,0.08))",
+                        border: "1.5px solid var(--cyan)",
+                        borderRadius: 12, color: "var(--cyan)", fontSize: 14, fontWeight: 600,
+                        cursor: "pointer", fontFamily: "var(--font-mono)", letterSpacing: "0.08em",
+                        boxShadow: "0 0 18px rgba(0,229,255,0.2)",
+                        transition: "box-shadow 0.2s ease",
+                        display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+                    }}
+                    onMouseEnter={e => e.currentTarget.style.boxShadow = "0 0 32px rgba(0,229,255,0.4)"}
+                    onMouseLeave={e => e.currentTarget.style.boxShadow = "0 0 18px rgba(0,229,255,0.2)"}
+                >
+                    🔑 Sign in with Demo Credentials <span style={{ opacity: 0.7, fontSize: 12 }}>→ S@gmail.com / 123456</span>
+                </button>
+
                 <div style={{ textAlign: "center", marginTop: 24, fontSize: 14, color: "var(--text-2)" }}>
                     Already have an account?{" "}
                     <span
