@@ -18,24 +18,54 @@ Hakkuna Mattata is a next-generation AI hiring platform that leverages Large Lan
 
 ```mermaid
 graph TD
-    A[📄 Resume Upload] --> B{🧠 Groq LLM Parsing}
-    B --> C[📊 Skill Graph Created]
-    C --> D[🎯 Adaptive Interview Plan]
-    D --> E[🎙 ElevenLabs Voice Call]
-    E --> F{🔍 Whisper Transcription}
-    F --> G[🧠 Real-time Evaluation]
-    G --> H[📈 Final Hiring Report]
-    
-    subgraph AI Engine
-    B
-    G
+    subgraph Intake
+    A[📄 Upload Resume] --> B[🧠 LLM Parse Resume]
+    B --> C[💾 MongoDB - Round 1]
     end
-    
-    subgraph Communication
-    E
-    F
+
+    subgraph ARIA_Init["ARIA Init"]
+    C --> D[🤖 Init ARIA Agent]
+    D --> E[👋 ARIA Greets]
+    end
+
+    subgraph Screening_Loop["Screening Loop"]
+    E --> F[🎙 Candidate Answers]
+    F --> G{💬 Says Repeat?}
+    G -- Yes --> E
+    G -- No --> H[⚡ LLM Eval Answer]
+    H --> I{❓ Follow-up?}
+    I -- Yes --> F
+    I -- No --> J{⏳ More Skills?}
+    J -- Yes --> F
+    J -- No --> K[🏁 ARIA Closes]
+    end
+
+    subgraph Process_&_RAG["Process & RAG"]
+    K --> L[📝 STT Transcript]
+    L --> M[📈 Update Skill Scores]
+    M --> N[💾 MongoDB - Round 2]
+    N --> O[📚 RAG Context]
+    O --> P[🤖 Init Interview Bot]
+    end
+
+    subgraph Interview_Phase["Interview Phase"]
+    P --> Q{🎯 Adaptive Ready?}
+    Q --> R[🎙 ElevenLabs Interview]
+    R --> S[🧠 LLM Eval Answers]
+    S --> T{🔄 More Qs?}
+    T -- Yes --> R
+    end
+
+    subgraph Finalize["Report & Deliver"]
+    T -- No --> U[📄 Generate Report]
+    U --> V[💾 MongoDB - Final]
+    V --> W((🏁 END))
     end
 ```
+
+> [!TIP]
+> If you have a custom image file (e.g., `flowchart.png`), you can also keep it here:
+> `![Flowchart](./flowchart.png)`
 
 ---
 
