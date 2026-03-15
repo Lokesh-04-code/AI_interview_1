@@ -188,6 +188,17 @@ export default function InterviewPage({ onNavigate }) {
   // End interview
   const handleEndInterview = async () => {
     try {
+      // Stop any playing audio
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.src = "";
+      }
+      
+      // Stop any recording tracks
+      if (mediaRecorderRef.current && mediaRecorderRef.current.stream) {
+        mediaRecorderRef.current.stream.getTracks().forEach(track => track.stop());
+      }
+      
       await endInterview(deepInterviewId);
       setPhase("completed");
       onNavigate("Report");

@@ -68,9 +68,12 @@ export async function getMe() {
 //  RESUME
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-export async function parseResume(file) {
+export async function parseResume(file, targetRole = "") {
   const formData = new FormData();
   formData.append("file", file);
+  if (targetRole) {
+    formData.append("target_role", targetRole);
+  }
   return request("/api/parse-resume", {
     method: "POST",
     body: formData,

@@ -5,7 +5,7 @@ import tempfile
 from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 
-from fastapi import FastAPI, File, UploadFile, HTTPException, Depends
+from fastapi import FastAPI, File, UploadFile, HTTPException, Depends, Form
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
@@ -211,6 +211,7 @@ async def save_upload_to_temp(file: UploadFile) -> str:
 @app.post("/api/parse-resume", summary="Upload PDF and extract resume fields")
 async def parse_resume(
     file: UploadFile = File(...),
+    target_role: Optional[str] = Form(None),
     credentials: Optional[HTTPAuthorizationCredentials] = Depends(HTTPBearer(auto_error=False)),
 ):
     """
@@ -227,6 +228,10 @@ async def parse_resume(
 
         # Stage 2 – AI refinement
         refined = refine_with_groq(raw_json)
+        
+        # Override the inferred role with the user's selected role
+        if target_role:
+            refined["target_role"] = target_role
 
         # Stage 3 – save to MongoDB
         candidate_doc = {
@@ -315,6 +320,7 @@ async def confidence_scores(body: ConfidenceScoreRequest):
 @app.post("/api/full-pipeline", summary="Upload PDF → Parse → Scores → Save (all in one)")
 async def full_pipeline(
     file: UploadFile = File(...),
+    target_role: Optional[str] = Form(None),
     credentials: Optional[HTTPAuthorizationCredentials] = Depends(HTTPBearer(auto_error=False)),
 ):
     """
@@ -333,6 +339,10 @@ async def full_pipeline(
 
         # Stage 2 – AI refinement
         refined = refine_with_groq(raw_json)
+        
+        # Override the inferred role with the user's selected role
+        if target_role:
+            refined["target_role"] = target_role
 
         # Stage 3 – confidence scoring
         scores = calculate_confidence_scores(refined)

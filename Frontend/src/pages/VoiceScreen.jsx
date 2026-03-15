@@ -148,11 +148,24 @@ export default function VoiceScreenPage({ onNavigate }) {
 
   const endCall = async () => {
     setStatus("completed");
+    
+    // Stop any playing audio
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.src = "";
+    }
+    
+    // Stop any recording tracks
+    if (mediaRecorderRef.current && mediaRecorderRef.current.stream) {
+      mediaRecorderRef.current.stream.getTracks().forEach(track => track.stop());
+    }
+    
     // interviewId is already set in context via setInterviewId
     onNavigate("Interview");
   };
 
   const totalQuestions = 7;
+  //few lines of code
 
   return (
     <div style={{ minHeight: '100vh', display: 'grid', gridTemplateColumns: '1fr 320px', gridTemplateRows: '60px 1fr', background: 'var(--void)', paddingTop: 60 }}>

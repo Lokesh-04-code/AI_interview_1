@@ -29,7 +29,7 @@ export default function UploadPage({ onNavigate }) {
 
     try {
       // Stage 1: Parse resume
-      const parseRes = await parseResume(selectedFile);
+      const parseRes = await parseResume(selectedFile, role);
       const candidate = parseRes.data;
       setCandidateId(candidate.id);
       setResumeData(candidate.resume_refined);

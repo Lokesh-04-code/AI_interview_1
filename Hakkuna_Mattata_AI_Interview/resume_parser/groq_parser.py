@@ -48,6 +48,7 @@ def call_groq(parsed_json: Dict) -> Optional[str]:
   "phone": "",
   "linkedin": "",
   "github": "",
+  "target_role": "",
   "summary": "",
   "skills": [],
   "projects": [
@@ -69,6 +70,7 @@ Rules:
 - Ensure project titles and descriptions are properly split.
 - Fix email and phone formatting issues.
 - Standardize all field names.
+- Extract or infer the candidate's target role based on their profile, experience, and objective, and place it in the `target_role` field.
 - If a field is missing or empty, return empty list or empty string.
 - Return valid JSON only.
 - Do NOT add explanations or markdown.
@@ -158,6 +160,7 @@ def refine_with_groq(parsed_json: Dict) -> Dict:
             "phone": "",
             "linkedin": "",
             "github": "",
+            "target_role": "",
             "summary": "",
             "skills": [],
             "projects": [],
