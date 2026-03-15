@@ -97,7 +97,7 @@ graph TD
 - **Database**: MongoDB Atlas via Motor (asynchronous driver).
 - **AI Engines**: 
   - **Groq**: Llama 3 70B (Text generation) & Whisper (Speech-to-Text).
-  - **ElevenLabs**: Text-to-Speech synthesis for the interviewer voice.
+  - **ElevenLabs**: Text-to-Speech multilingual model synthesis for the interviewer voice.
 - **Authentication**: JWT-based secure session management.
 
 ---
