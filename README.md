@@ -65,7 +65,7 @@ graph TD
 
 > [!TIP]
 > If you have a custom image file (e.g., `flowchart.png`), you can also keep it here:
-> `![Flowchart](./flowchart.png)`
+![Flowchart](./flowchart.png)
 
 ---
 
